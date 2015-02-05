@@ -29,7 +29,7 @@ public class Travailleur implements Serializable{
         return tel;
     }
 
-    private void setTel(String tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -48,6 +48,4 @@ public class Travailleur implements Serializable{
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    
-    
 }
