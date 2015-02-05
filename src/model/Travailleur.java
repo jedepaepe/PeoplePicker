@@ -15,13 +15,38 @@ import java.io.Serializable;
  */
 public class Travailleur implements Serializable{
     private static final long serialVersionUID = 6529685098267757690L;
-    String Nom;
-    String prenom;
-    int tel;
+    private String Nom;
+    private String prenom;
+    private String tel;
 
-    public Travailleur(String Nom, String prenom, int tel) {
-        this.Nom = Nom;
-        this.prenom = prenom;
+    public Travailleur(String Nom, String prenom, String tel) {
+        setNom(Nom);
+        setPrenom(prenom);
+        setTel(tel);
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
         this.tel = tel;
     }
+
+    public String getNom() {
+        return Nom;
+    }
+
+    public void setNom(String Nom) {
+        if(this.Nom.length()>=2) { this.Nom=Nom; }
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    
 }
