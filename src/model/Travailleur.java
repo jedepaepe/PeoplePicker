@@ -17,19 +17,19 @@ public class Travailleur implements Serializable{
     private static final long serialVersionUID = 6529685098267757690L;
     private String Nom;
     private String prenom;
-    private int tel;
+    private String tel;
 
-    public Travailleur(String Nom, String prenom, int tel) {
-        if(this.Nom.length()>=2) {this.Nom= Nom;}  
-        this.prenom = prenom;
-        this.tel = tel;
+    public Travailleur(String Nom, String prenom, String tel) {
+        setNom(Nom);
+        setPrenom(prenom);
+        setTel(tel);
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    private void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -38,7 +38,7 @@ public class Travailleur implements Serializable{
     }
 
     public void setNom(String Nom) {
-        this.Nom = Nom;
+        if(this.Nom.length()>=2) {this.Nom= Nom;}
     }
 
     public String getPrenom() {

@@ -12,10 +12,10 @@ public class PersistanceFichiers {
     public static void main(String[] args)
             throws ClassNotFoundException, IOException {
         Travailleur[] il = new Travailleur[4];
-        Travailleur t = new Travailleur("Louis", "iojhofa", 021234567);
-        Travailleur t1 = new Travailleur("Igor", "mozgk", 021234455);
-        Travailleur t2 = new Travailleur("Julien", "sht", 1);
-        Travailleur t3 = new Travailleur("Pelagia", "zhhrh", 1);
+        Travailleur t = new Travailleur("Louis", "iojhofa", "021234567");
+        Travailleur t1 = new Travailleur("Igor", "mozgk", "021234455");
+        Travailleur t2 = new Travailleur("Julien", "sht", "1");
+        Travailleur t3 = new Travailleur("Pelagia", "zhhrh", "1");
         il[0] = t;
         il[1] = t1;
         il[2] = t2;
@@ -38,7 +38,7 @@ public class PersistanceFichiers {
         while (check) {
             try {
                 Travailleur arr = (Travailleur) input.readObject();
-                System.out.println(arr.Nom);
+                System.out.println(arr.getNom());
             } catch (EOFException ex) {
                 check = false;
             }
