@@ -19,34 +19,21 @@ public class UserInterface {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        LinkedList <Worker> listWorker = Worker.tableauWorker() ;
-        
-        System.out.println(
-                "Sur quoi voulez vous faire la recherche? (1: Prenom, 2:Nom, 3: Telephone");
-        int reponse = sc.nextInt();
-        switch (reponse) {
-            case 1: {
-                System.out.println("Prenom: ");
-                String prenom = sc.nextLine();
-                
-                if (Worker.compareNom(prenom, null) == 0) {
-                    System.out.println("trouvé");
-                };
+
+        System.out.println("Voulez-vous charger un fichier (L) ou rechercher des données (S) ? ");
+        String rep = sc.next();
+        switch (rep) {
+            case "L": {
+                // ReadFileUsingJFileChooser.main(args);
                 break;
             }
-            case 2: {
-                System.out.println("Nom: ");
-                String nom = sc.nextLine();
-                break;
+            case "S": {
+                System.out.println(
+                        "Sur quoi voulez vous faire la recherche? (1: Prenom, 2:Nom, 3: Telephone");
+                int reponse = sc.nextInt();
+                UISearch.searchTrav(reponse);
             }
-            case 3: {
-                System.out.println("Telephone: ");
-                String telephone = sc.nextLine();
-                break;
-            }
-            default: {
-                System.err.println("Erreur");
-            }
-        }        
+        }
+
     }
 }

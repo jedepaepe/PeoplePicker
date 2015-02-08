@@ -1,4 +1,4 @@
-Nom;Prénom;Id;Actif;Tel;Mail;Type;Titre;Departement;Fonction
-nomUn;prenomUn;idUn;actifUn;telUn;mailUn;typeUn;titreUn;departementUn;fonctionUn
-nomDeux;prenomDeux;idDeux;actifDeux;telDeux;mailDeux;typeDeux;titreDeux;departementDeux;fonctionDeux
-nomTrois;prenomTrois;idTrois;actifTrois;telTrois;mailTrois;typeTrois;titreTrois;departementTrois;fonctionTrois
+Nom;Prénom;Tel;null
+nomUn;prenomUn;telUn;null
+nomDeux;prenomDeux;telDeux;null
+nomTrois;prenomTrois;telTrois;null
