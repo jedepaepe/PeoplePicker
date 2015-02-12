@@ -3,13 +3,14 @@
 package loader;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.io.File;
 import java.util.ArrayList;
 
+import java.util.LinkedList;
 import model.Travailleur;
 
 public class CvsLoader {
@@ -55,24 +56,27 @@ public class CvsLoader {
         try {
             File f = new File("Travailleur.csv");
             if (f.exists()) {
-                InputStream flux = new FileInputStream("Travailleur.csv");
+                FileInputStream flux = new FileInputStream(f);
                 InputStreamReader lecture = new InputStreamReader(flux);
                 try (BufferedReader buff = new BufferedReader(lecture)) {
                     String ligne;
                     LinkedList<Travailleur> listTravailleur = new LinkedList<>();
-                    buff.readLine();
-// lit la première ligne : header
+                    buff.readLine(); // lit la première ligne : header
                     while ((ligne = buff.readLine()) != null) {
                         String[] tabFields = ligne.split(";");
                         // attention, tabFields[2] - tel n'est pas un entier
 
-                        listTravailleur.add(new Travailleur(tabFields[0], tabFields[1], tabFields[1]));
+                        listTravailleur.add(new Travailleur(tabFields[0], tabFields[1], tabFields[2]));
                     }
 
                     // code de vérification
+                    /* Code avancé encore non vu au cours
                     listTravailleur.stream().forEach((t) -> {
                         System.out.println(t.getNom());
-                    });
+                    });*/
+                    for(Travailleur t : listTravailleur) {
+                        System.out.println(t.getNom());
+                    }
                 }
             } else {
                 System.out.println("ce fichier n'existe pas");
