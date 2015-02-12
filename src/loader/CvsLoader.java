@@ -33,6 +33,7 @@ public class CvsLoader {
      */
     public static LinkedList<Travailleur> loadTest() {
         LinkedList<Travailleur> lt = new LinkedList<>();
+        lt.add(new Travailleur("Durant", "Jean", "023158762"));
         // todo code to return a hard coded list
         return lt;        
     }

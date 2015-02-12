@@ -21,33 +21,40 @@ public class ListeTravailleur {
         load();
     }
     
-    void load() {
+    private void load() {
         // place code to load the fichebin.bin file
         //public static void load(String filename)
         InputStream inputstream=ListeTravailleur.class.getResourceAsStream("fichbin.txt");
     }
     
-    void save() {
+    private void save() {
         // place code to save to fichebin.bin
     }
     
-    void add(Travailleur t) {
+    public void add(Travailleur t) {
         // add t to the list
+        save();
     }
     
-    void remove(Travailleur t) {
+    public void add(LinkedList<Travailleur> ts) {
+        // add the list ts to the list
+        save();
+    }
+    
+    public void remove(Travailleur t) {
         
     }
     
-    void update(Travailleur t) {
+    public void update(Travailleur t) {
         
     }
     
-    LinkedList<Travailleur> search(String nom) {
+    public LinkedList<Travailleur> search(String nom) {
+        // todo add search
         return (LinkedList<Travailleur>) list.clone();
     }
     
-    LinkedList<Travailleur> getAll() {
+    public LinkedList<Travailleur> getAll() {
         return (LinkedList<Travailleur>) list.clone();
     }
     
