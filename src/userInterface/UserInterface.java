@@ -12,9 +12,10 @@ import java.util.Scanner;
  *
  * @author localwsp
  */
-public class UserInterface {
+public class UserInterface { 
 
     /**
+     * Start point of the PeoplePicker
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
