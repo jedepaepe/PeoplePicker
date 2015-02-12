@@ -5,8 +5,11 @@
  */
 package userinterface;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Scanner;
+import loader.*;
+import model.*;
 
 /**
  *
@@ -19,6 +22,46 @@ public class UserInterface {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        LinkedList<model.Travailleur> listWorker= new LinkedList<model.Travailleur> () ;
+        
+        ListeTravailleur listPushWorker  = new ListeTravailleur () ;
+        
+        System.out.println(args.length);
+        if(args.length == 2) {
+            File f = new File(args[1]);
+            if(f.exists()) {
+                switch (args[0]) {
+                    case "L": {
+                        //listPushWorker.add(loader.CvsLoader.load(args[1]));
+                        //listPushWorker.add(loader.CvsLoader.loadTest());
+                        System.out.println(loader.CvsLoader.loadTest().size());
+                        for( Travailleur wt : loader.CvsLoader.loadTest()){
+                            System.out.println(wt.getPrenom());
+                        }
+                        System.out.println("case L");
+                        break;
+                    }
+                    case "S": {
+                        System.out.println("case S");
+                        break;
+                        /*
+                        System.out.println(
+                                "Sur quoi voulez vous faire la recherche? (1: Prenom, 2:Nom, 3: Telephone");
+                        int reponse = sc.nextInt();
+                        userInterface.UISearch.searchTrav(reponse);
+                        */
+                    }
+                }
+            } else {
+                System.out.println("file doesn't exists");
+                System.exit(1);
+            }
+        } else {
+            System.out.println("invalid arguments");
+            System.exit(1);
+        }
+        
+        /*
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Voulez-vous charger un fichier (L) ou rechercher des données (S) ? ");
@@ -35,6 +78,6 @@ public class UserInterface {
                 userInterface.UISearch.searchTrav(reponse);
             }
         }
-
+        */
     }
 }
