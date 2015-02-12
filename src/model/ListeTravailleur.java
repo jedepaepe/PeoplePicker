@@ -13,19 +13,18 @@ import java.util.LinkedList;
  *
  * @author localwsp
  */
-public class ListePersonne {
+public class ListeTravailleur {
     
     private LinkedList<Travailleur> list = new LinkedList<>();
 
-    public ListePersonne() {
+    public ListeTravailleur() {
         load();
     }
-
     
     void load() {
         // place code to load the fichebin.bin file
         //public static void load(String filename)
-        InputStream inputstream=ListePersonne.class.getResourceAsStream("fichbin.txt");
+        InputStream inputstream=ListeTravailleur.class.getResourceAsStream("fichbin.txt");
     }
     
     void save() {
@@ -36,8 +35,20 @@ public class ListePersonne {
         // add t to the list
     }
     
+    void remove(Travailleur t) {
+        
+    }
+    
+    void update(Travailleur t) {
+        
+    }
+    
     LinkedList<Travailleur> search(String nom) {
-        return list;
+        return (LinkedList<Travailleur>) list.clone();
+    }
+    
+    LinkedList<Travailleur> getAll() {
+        return (LinkedList<Travailleur>) list.clone();
     }
     
 }
