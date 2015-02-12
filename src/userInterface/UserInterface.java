@@ -24,19 +24,26 @@ public class UserInterface {
     public static void main(String[] args) throws Exception {
         LinkedList<model.Travailleur> listWorker= new LinkedList<model.Travailleur> () ;
         
+        ListeTravailleur listPushWorker  = new ListeTravailleur () ;
+        
         System.out.println(args.length);
         if(args.length == 2) {
             File f = new File(args[1]);
             if(f.exists()) {
                 switch (args[0]) {
                     case "L": {
-                        listWorker = loader.CvsLoader.load(args[1]);                        
-                        
+                        //listPushWorker.add(loader.CvsLoader.load(args[1]));
+                        //listPushWorker.add(loader.CvsLoader.loadTest());
+                        System.out.println(loader.CvsLoader.loadTest().size());
+                        for( Travailleur wt : loader.CvsLoader.loadTest()){
+                            System.out.println(wt.getPrenom());
+                        }
                         System.out.println("case L");
                         break;
                     }
                     case "S": {
-                        System.out.println("case L");
+                        System.out.println("case S");
+                        break;
                         /*
                         System.out.println(
                                 "Sur quoi voulez vous faire la recherche? (1: Prenom, 2:Nom, 3: Telephone");
