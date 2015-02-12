@@ -85,9 +85,9 @@ public class CvsLoader {
         
         System.out.println("\n");
         LinkedList<Travailleur> list = loadTestFile();
-        for (Travailleur t : list) {
+        list.stream().forEach((t) -> {
             System.out.println(t.getNom());
-        }
+        });
     }
 
     private static void programLoader() {
