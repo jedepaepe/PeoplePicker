@@ -38,7 +38,7 @@ public class Travailleur implements Serializable{
     }
 
     public void setNom(String Nom) {
-        if(this.Nom.length() >= 0) {
+        if(Nom.length() >= 0) {
             this.Nom= Nom;
         }
     }
