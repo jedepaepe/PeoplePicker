@@ -22,7 +22,7 @@ public class PersistanceFichiers {
         il[3] = t3;
 
         // Create an output stream for file array.dat
-        ObjectOutputStream output = 
+        /*ObjectOutputStream output = 
                 new ObjectOutputStream(new FileOutputStream("fichbin.txt", true));
         // Write arrays to the object output stream
         for(Travailleur trav : il) {
@@ -30,8 +30,8 @@ public class PersistanceFichiers {
         }
         // Close the stream
         output.close();
-
-        ObjectInputStream input = 
+        */
+        /*ObjectInputStream input = 
                 new ObjectInputStream(new FileInputStream("fichbin.txt"));
 
         boolean check = true;
@@ -43,7 +43,7 @@ public class PersistanceFichiers {
                 check = false;
             }
         }
-
+        */
          //for (Travailleur arr2 : arr)
         //  System.out.println(arr2);
         // Create an input stream for file array.dat
@@ -53,6 +53,6 @@ public class PersistanceFichiers {
          System.out.print(newll.get(i));
          }*/
         // Close the stream
-        input.close();
+        /*input.close(); */
     }
 }
