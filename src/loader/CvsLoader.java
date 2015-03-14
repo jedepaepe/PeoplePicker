@@ -2,7 +2,6 @@
 // class CvsLoader charge un fichier csv et extrait les travailleurs
 package loader;
 
-import static Logger.TestLogger.loggeur;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,8 +25,6 @@ public class CvsLoader {
     public static LinkedList<Travailleur> load(String fileName) {
         //LinkedList<Travailleur> lt = new LinkedList<>();
         // todo code to load the list
-        Logger.TestLogger.loggeur.setLevel(Level.WARNING);
-    loggeur.log(Level.INFO, "imports inutilisés");
         return loadTest();
     }
 
@@ -66,8 +63,6 @@ public class CvsLoader {
                         lt.add(new Travailleur(tabFields[0], tabFields[1], tabFields[2]));
                     }
                 }
-            } else {
-                loggeur.log(Level.INFO, "ce fichier n'existe pas");
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -120,8 +115,6 @@ public class CvsLoader {
                         System.out.println(t.getNom());
                     });
                 }
-            } else {
-                loggeur.log(Level.INFO, "ce fichier n'existe pas");
             }
         } catch (Exception e) {
             System.out.println(e.toString());

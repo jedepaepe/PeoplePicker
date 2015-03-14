@@ -7,8 +7,11 @@ package userinterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import model.*;
 
@@ -40,12 +43,6 @@ public class UserInterface {
                     case "S": {
                         searchList();
                         break;
-                        /*
-                         System.out.println(
-                         "Sur quoi voulez vous faire la recherche? (1: Prenom, 2:Nom, 3: Telephone");
-                         int reponse = sc.nextInt();
-                         userInterface.UISearch.searchTrav(reponse);
-                         */
                     }
                 }
             } else {
@@ -98,7 +95,11 @@ public class UserInterface {
         }
         // ajouter le add du model -> method non static pour le moment donc on instancie
         ListeTravailleur temp = new ListeTravailleur();
-        temp.add(lt);
+        try {
+            temp.add(lt);
+        } catch (IOException ex) {
+            System.err.println("Erreur lors du chargement du fichier CVS");
+        }
     }
     //permet d'ouvrir la fenetre de choix du fichier .csv
     private static File fileChooser() throws FileNotFoundException {
