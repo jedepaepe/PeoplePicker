@@ -27,9 +27,6 @@ public class UserInterface {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        //LinkedList<model.Travailleur> listWorker = new LinkedList<model.Travailleur>();
-
-        //ListeTravailleur listPushWorker = new ListeTravailleur();
 
         System.out.println(args.length);
         if (args.length == 1) {
