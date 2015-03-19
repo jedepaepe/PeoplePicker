@@ -13,6 +13,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,13 +22,17 @@ import java.util.LinkedList;
  */
 public class ListeTravailleur {
 
+    Logger trace = Logger.getLogger("PPLogger");
     private LinkedList<Travailleur> list = new LinkedList<>();
 
     public ListeTravailleur() {
+
         try {
             load();
         } catch (ClassNotFoundException e) {
             System.out.println("Error " + e);
+            trace.log(Level.ALL, "Error " + e);
+
         }
     }
 
@@ -44,42 +50,68 @@ public class ListeTravailleur {
                     list.add(arr);
                 } catch (EOFException ex) {
                     check = false;
+                    trace.log(Level.ALL, "Error " + ex);
                 }
             }
         } catch (IOException e) {
             System.out.println("Erreur" + e);
+            trace.log(Level.ALL, "Error " + e);
         }
 
     }
 
     private void save() throws IOException {
         // place code to save to fichebin.bin
-        ObjectOutputStream output
-                = new ObjectOutputStream(new FileOutputStream("fichbin.txt", true));
-        // Write arrays to the object output stream
-        for (Travailleur trav : list) {
-            output.writeObject(trav);
+        try {
+            ObjectOutputStream output
+                    = new ObjectOutputStream(new FileOutputStream("fichbin.txt", true));
+            try {
+                for (Travailleur trav : list) {
+                    // Write arrays to the object output stream
+                    output.writeObject(trav);
+                    try {
+                        output.close();
+                    } catch (Exception e) {
+                        trace.log(Level.ALL, "Error " + e);
+                    }
+                }
+            } catch (Exception e) {
+                trace.log(Level.ALL, "Error " + e);
+            }
+        } catch (Exception e) {
+            trace.log(Level.ALL, "Error " + e);
         }
-        // Close the stream
-        output.close();
 
+        // Close the stream
     }
 
     public void add(Travailleur t) throws IOException {
         // add t to the list
-        list.add(t);
-        save();
+        try {
+            list.add(t);
+            save();
+        } catch (Exception e) {
+            trace.log(Level.ALL, "Error " + e);
+        }
     }
 
     public void add(LinkedList<Travailleur> ts) throws IOException {
         // add the list ts to the list
-        list.addAll(ts);
-        save();
+        try {
+            list.addAll(ts);
+            save();
+        } catch (Exception e) {
+            trace.log(Level.ALL, "Error " + e);
+        }
     }
 
     public void remove(Travailleur t) throws IOException {
-        list.remove(t);
-        save();
+        try {
+            list.remove(t);
+            save();
+        } catch (Exception e) {
+            trace.log(Level.ALL, "Error " + e);
+        }
     }
 
     public void update(Travailleur t) {
@@ -92,17 +124,28 @@ public class ListeTravailleur {
 
     public LinkedList<Travailleur> search(String nom) {
         // do a real search
-        LinkedList<Travailleur> res = new LinkedList<>();
-        for (Travailleur t : list) {
-            if (t.getNom() == nom) {
-                System.out.println("OK, on a le travailleur " + t);
-                res.add(t);
+        try {
+            LinkedList<Travailleur> res = new LinkedList<>();
+            try {
+                for (Travailleur t : list) {
+                    if (t.getNom() == nom) {
+                        System.out.println("OK, on a le travailleur " + t);
+                        res.add(t);
+                    }
+
+                }
+                return res;
+            } catch (Exception e) {
+                trace.log(Level.ALL, "Error " + e);
             }
+        } catch (Exception e) {
+            trace.log(Level.ALL, "Error " + e);
         }
-        return res;
+        
     }
 
     public LinkedList<Travailleur> getAll() {
+        @SuppressWarnings("unchecked")
         LinkedList<Travailleur> res = (LinkedList<Travailleur>) list.clone();
         return res;
     }
