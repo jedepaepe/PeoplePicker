@@ -9,7 +9,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import model.Travailleur;
@@ -23,11 +24,28 @@ public class CvsLoader {
      * @return : the list of Travailleur
      */
     public static LinkedList<Travailleur> load(String fileName) {
-        //LinkedList<Travailleur> lt = new LinkedList<>();
-        // todo code to load the list
-        return loadTest();
+        LinkedList<Travailleur> lt = new LinkedList<>();
+        try {
+            File f = new File(fileName);
+            if (f.exists()) {
+                FileInputStream flux = new FileInputStream(f);
+                InputStreamReader lecture = new InputStreamReader(flux);
+                try (BufferedReader buff = new BufferedReader(lecture)) {
+                    String ligne;
+                    buff.readLine(); // lit la première ligne : header
+                    while ((ligne = buff.readLine()) != null) {
+                        String[] tabFields = ligne.split(";");
+                        lt.add(new Travailleur(tabFields[0], tabFields[1], tabFields[2]));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            trace.log(Level.INFO,e.toString());
+        }
+        return lt;
     }
-
+    
+static Logger trace=Logger .getLogger("MonLoguer");
     /**
      * Caution : test purpoes only Load an hard coded list of Travailleur.
      *
@@ -48,26 +66,8 @@ public class CvsLoader {
      *
      * @return a list of Travailleur
      */
-    public static LinkedList<Travailleur> loadTestFile() {
-        LinkedList<Travailleur> lt = new LinkedList<>();
-        try {
-            File f = new File("Travailleur.csv");
-            if (f.exists()) {
-                FileInputStream flux = new FileInputStream(f);
-                InputStreamReader lecture = new InputStreamReader(flux);
-                try (BufferedReader buff = new BufferedReader(lecture)) {
-                    String ligne;
-                    buff.readLine(); // lit la première ligne : header
-                    while ((ligne = buff.readLine()) != null) {
-                        String[] tabFields = ligne.split(";");
-                        lt.add(new Travailleur(tabFields[0], tabFields[1], tabFields[2]));
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        return lt;
+    private static LinkedList<Travailleur> loadTestFile() {
+        return load("Travailleur.csv");
     }
 
     /**
@@ -117,7 +117,7 @@ public class CvsLoader {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+            trace.log(Level.INFO,e.toString());
         }
     }
 
