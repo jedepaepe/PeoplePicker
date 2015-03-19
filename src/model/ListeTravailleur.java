@@ -103,6 +103,7 @@ public class ListeTravailleur {
     }
 
     public LinkedList<Travailleur> getAll() {
+        @SuppressWarnings("unchecked")
         LinkedList<Travailleur> res = (LinkedList<Travailleur>) list.clone();
         return res;
     }
