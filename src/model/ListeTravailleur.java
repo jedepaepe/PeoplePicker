@@ -124,8 +124,8 @@ public class ListeTravailleur {
 
     public LinkedList<Travailleur> search(String nom) {
         // do a real search
+        LinkedList<Travailleur> res = new LinkedList<>();
         try {
-            LinkedList<Travailleur> res = new LinkedList<>();
             try {
                 for (Travailleur t : list) {
                     if (t.getNom() == nom) {
@@ -141,7 +141,7 @@ public class ListeTravailleur {
         } catch (Exception e) {
             trace.log(Level.ALL, "Error " + e);
         }
-        
+        return res;
     }
 
     public LinkedList<Travailleur> getAll() {
