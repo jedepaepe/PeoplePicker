@@ -30,11 +30,15 @@ public class UserInterface {
 
         System.out.println(args.length);
         if (args.length == 1) {
-            File f = fileChooser();  
-            if (f.exists()) {
                 switch (args[0]) {
-                    case "L": {
-                        loadCvsFile(f);  
+                    case "L": {                        
+                        File f = fileChooser();
+                        if (f.exists()) {
+                           loadCvsFile(f);  
+                        } else {
+                            System.out.println("file doesn't exists");
+                            System.exit(1);
+                        }                           
                         break;
                     }
                     case "S": {
@@ -42,10 +46,6 @@ public class UserInterface {
                         break;
                     }
                 }
-            } else {
-                System.out.println("file doesn't exists");
-                System.exit(1);
-            }
         } else {
             System.out.println("invalid arguments");
             System.exit(1);
@@ -77,6 +77,7 @@ public class UserInterface {
         String nomSearch = searchScan.nextLine();
         //la ligne suivante permet de faire la recherche si la method search est passée en static
 //        ListeTravailleur temp = new ListeTravailleur();
+        System.out.println(nomSearch);
         LinkedList<Travailleur> resultat = ListeTravailleur.search(nomSearch);
         for (Travailleur wt : resultat) {
             System.out.println(wt.getPrenom());
