@@ -40,16 +40,15 @@ public class ListeTravailleur {
                     list.add(arr);
                 } catch (EOFException ex) {
                     check = false;
-                    trace.log(Level.ALL, "Error {0}", ex);
+                    trace.log(Level.SEVERE, "Error {0}", ex);
                 }
             }
         } catch (IOException e) {
             System.out.println("Erreur" + e);
-            trace.log(Level.ALL, "Error " + e);
+            trace.log(Level.SEVERE, "Error " + e);
         } catch (ClassNotFoundException e) {
             System.out.println("Erreur" + e);
-            trace.log(Level.ALL, "Error " + e);
-            
+            trace.log(Level.SEVERE, "Error " + e); 
         }
 
     }
@@ -132,7 +131,6 @@ public class ListeTravailleur {
                         System.out.println("OK, on a le travailleur " + t);
                         res.add(t);
                     }
-
                 }
                 return res;
             } catch (Exception e) {
