@@ -22,21 +22,14 @@ import java.util.logging.Logger;
  */
 public class ListeTravailleur {
 
-    Logger trace = Logger.getLogger("PPLogger");
-    private LinkedList<Travailleur> list = new LinkedList<>();
+    static Logger trace = Logger.getLogger("PPLogger");
+    static private LinkedList<Travailleur> list = new LinkedList<>();
 
-    public ListeTravailleur() {
-
-        try {
+    private ListeTravailleur() {
             load();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Error " + e);
-            trace.log(Level.ALL, "Error " + e);
-
-        }
     }
 
-    private void load() throws ClassNotFoundException {
+    private static void load() {
         // place code to load the fichebin.bin file
         //public static void load(String filename)
         try {
@@ -50,17 +43,21 @@ public class ListeTravailleur {
                     list.add(arr);
                 } catch (EOFException ex) {
                     check = false;
-                    trace.log(Level.ALL, "Error " + ex);
+                    trace.log(Level.ALL, "Error {0}", ex);
                 }
             }
         } catch (IOException e) {
             System.out.println("Erreur" + e);
             trace.log(Level.ALL, "Error " + e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erreur" + e);
+            trace.log(Level.ALL, "Error " + e);
+            
         }
 
     }
 
-    private void save() throws IOException {
+    private static void save() {
         // place code to save to fichebin.bin
         try {
             ObjectOutputStream output
@@ -85,7 +82,7 @@ public class ListeTravailleur {
         // Close the stream
     }
 
-    public void add(Travailleur t) throws IOException {
+    public static void add(Travailleur t) {
         // add t to the list
         try {
             list.add(t);
@@ -95,7 +92,7 @@ public class ListeTravailleur {
         }
     }
 
-    public void add(LinkedList<Travailleur> ts) throws IOException {
+    public static void add(LinkedList<Travailleur> ts) {
         // add the list ts to the list
         try {
             list.addAll(ts);
@@ -105,7 +102,7 @@ public class ListeTravailleur {
         }
     }
 
-    public void remove(Travailleur t) throws IOException {
+    public static void remove(Travailleur t) {
         try {
             list.remove(t);
             save();
@@ -114,7 +111,7 @@ public class ListeTravailleur {
         }
     }
 
-    public void update(Travailleur t) {
+    public static void update(Travailleur t) {
         // manque d'identifiant
        /* String nom = t.getNom();
          String prenom = t.getPrenom();
@@ -122,7 +119,7 @@ public class ListeTravailleur {
 
     }
 
-    public LinkedList<Travailleur> search(String nom) {
+    public static LinkedList<Travailleur> search(String nom) {
         // do a real search
         LinkedList<Travailleur> res = new LinkedList<>();
         try {
@@ -144,7 +141,7 @@ public class ListeTravailleur {
         return res;
     }
 
-    public LinkedList<Travailleur> getAll() {
+    public static LinkedList<Travailleur> getAll() {
         @SuppressWarnings("unchecked")
         LinkedList<Travailleur> res = (LinkedList<Travailleur>) list.clone();
         return res;
