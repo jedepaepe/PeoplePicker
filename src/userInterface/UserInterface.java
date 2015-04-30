@@ -76,8 +76,8 @@ public class UserInterface {
         Scanner searchScan = new Scanner(System.in);
         String nomSearch = searchScan.nextLine();
         //la ligne suivante permet de faire la recherche si la method search est passée en static
-        ListeTravailleur temp = new ListeTravailleur();
-        LinkedList<Travailleur> resultat = temp.search(nomSearch);
+//        ListeTravailleur temp = new ListeTravailleur();
+        LinkedList<Travailleur> resultat = ListeTravailleur.search(nomSearch);
         for (Travailleur wt : resultat) {
             System.out.println(wt.getPrenom());
             System.out.println(wt.getNom());
@@ -90,13 +90,7 @@ public class UserInterface {
         for (Travailleur wt : lt) {
             System.out.println(wt.getPrenom());
         }
-        // ajouter le add du model -> method non static pour le moment donc on instancie
-        ListeTravailleur temp = new ListeTravailleur();
-        try {
-            temp.add(lt);
-        } catch (IOException ex) {
-            System.err.println("Erreur lors du chargement du fichier CVS");
-        }
+        ListeTravailleur.add(lt);
     }
     //permet d'ouvrir la fenetre de choix du fichier .csv
     private static File fileChooser() throws FileNotFoundException {
