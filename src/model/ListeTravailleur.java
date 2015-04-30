@@ -25,9 +25,6 @@ public class ListeTravailleur {
     static Logger trace = Logger.getLogger("PPLogger");
     static private LinkedList<Travailleur> list = new LinkedList<>();
 
-    private ListeTravailleur() {
-            load();
-    }
 
     private static void load() {
         // place code to load the fichebin.bin file
@@ -39,7 +36,7 @@ public class ListeTravailleur {
             while (check) {
                 try {
                     Travailleur arr = (Travailleur) input.readObject();
-                    System.out.println(arr.getNom());
+//                    System.out.println(arr.getNom());
                     list.add(arr);
                 } catch (EOFException ex) {
                     check = false;
@@ -59,6 +56,7 @@ public class ListeTravailleur {
 
     private static void save() {
         // place code to save to fichebin.bin
+        load();
         try {
             ObjectOutputStream output
                     = new ObjectOutputStream(new FileOutputStream("fichbin.txt", true));
@@ -84,6 +82,7 @@ public class ListeTravailleur {
 
     public static void add(Travailleur t) {
         // add t to the list
+        load();
         try {
             list.add(t);
             save();
@@ -94,6 +93,7 @@ public class ListeTravailleur {
 
     public static void add(LinkedList<Travailleur> ts) {
         // add the list ts to the list
+        load();
         try {
             list.addAll(ts);
             save();
@@ -103,6 +103,7 @@ public class ListeTravailleur {
     }
 
     public static void remove(Travailleur t) {
+        load();
         try {
             list.remove(t);
             save();
@@ -112,6 +113,7 @@ public class ListeTravailleur {
     }
 
     public static void update(Travailleur t) {
+        load();
         // manque d'identifiant
        /* String nom = t.getNom();
          String prenom = t.getPrenom();
@@ -121,6 +123,7 @@ public class ListeTravailleur {
 
     public static LinkedList<Travailleur> search(String nom) {
         // do a real search
+        load();
         LinkedList<Travailleur> res = new LinkedList<>();
         try {
             try {
@@ -142,7 +145,7 @@ public class ListeTravailleur {
     }
 
     public static LinkedList<Travailleur> getAll() {
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")            
         LinkedList<Travailleur> res = (LinkedList<Travailleur>) list.clone();
         return res;
     }
