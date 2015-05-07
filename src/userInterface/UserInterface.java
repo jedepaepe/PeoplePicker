@@ -76,7 +76,7 @@ public class UserInterface {
         Scanner searchScan = new Scanner(System.in);
         String nomSearch = searchScan.nextLine();
         //la ligne suivante permet de faire la recherche si la method search est passée en static
-//        ListeTravailleur temp = new ListeTravailleur();
+        //ListeTravailleur temp = new ListeTravailleur();
         System.out.println(nomSearch);
         LinkedList<Travailleur> resultat = ListeTravailleur.search(nomSearch);
         for (Travailleur wt : resultat) {
