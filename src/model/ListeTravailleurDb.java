@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -32,19 +33,28 @@ public class ListeTravailleurDb {
 
     private static void connect() {
         if (!isConnected) {
-            isConnected = true;
-            Class mysqlDriver = Class.forName("com.mysql.jdbc.Driver");
-            mysqlDriver.newInstance();
-            con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/PeoplePicker?zeroDateTimeBehavior=convertToNull",
-                    "root", "");
+            try {
+                isConnected = true;
+                Class mysqlDriver = Class.forName("com.mysql.jdbc.Driver");
+                mysqlDriver.newInstance();
+                con = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/PeoplePicker?zeroDateTimeBehavior=convertToNull",
+                        "root", "");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ListeTravailleurDb.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(ListeTravailleurDb.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(ListeTravailleurDb.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ListeTravailleurDb.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     public static void add(Travailleur t) {
         // INSERT
         connect();
-        Statement stat = con.createStatement();
     }
 
     public static void add(LinkedList<Travailleur> ts) {
