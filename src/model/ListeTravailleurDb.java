@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,25 +27,45 @@ public class ListeTravailleurDb {
 
     static Logger trace = Logger.getLogger("PPLogger");
     static private LinkedList<Travailleur> list = new LinkedList<>();
+    static boolean isConnected;
+    static Connection con;
+
+    private static void connect() {
+        if (!isConnected) {
+            isConnected = true;
+            Class mysqlDriver = Class.forName("com.mysql.jdbc.Driver");
+            mysqlDriver.newInstance();
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/PeoplePicker?zeroDateTimeBehavior=convertToNull",
+                    "root", "");
+        }
+    }
 
     public static void add(Travailleur t) {
         // INSERT
+        connect();
+        Statement stat = con.createStatement();
     }
 
     public static void add(LinkedList<Travailleur> ts) {
         // INSERT
+        connect();
     }
 
     public static void remove(Travailleur t) {
         // DELETE (id!)
+        connect();
     }
 
     public static void update(Travailleur t) {
         // UPDATE (id!)
+        connect();
     }
 
     public static LinkedList<Travailleur> search(String nom) {
         // SELECT WHERE ...
+        connect();
+
         LinkedList<Travailleur> res = new LinkedList<>();
         Travailleur t = new Travailleur("Dupont", "T", "022222222");
         res.add(t);
@@ -50,6 +73,8 @@ public class ListeTravailleurDb {
     }
 
     public static LinkedList<Travailleur> getAll() {
+        connect();
+
         // SELECT ...
         return search("");
     }
